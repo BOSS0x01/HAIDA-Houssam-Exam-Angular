@@ -16,7 +16,7 @@ export class ClientsComponent {
   }
 
   ngOnInit() {
-    this.clientService.getCustomers().subscribe(
+    this.clientService.getClients().subscribe(
       {
         next:(data)=>{
           this.clients = data;
@@ -25,5 +25,18 @@ export class ClientsComponent {
         }
       }
     )
+  }
+  handleDelete(client: any): void {
+    if (confirm("Are you sure?")) {
+      this.clientService.deleteClient(client.id).subscribe({
+        next: () => {
+          this.clients = this.clients.filter((c: any) => c.id !== client.id);
+        },
+        error: (err) => {
+          console.error("Failed to delete client", err);
+          alert("Une erreur est survenue lors de la suppression.");
+        }
+      });
+    }
   }
 }
