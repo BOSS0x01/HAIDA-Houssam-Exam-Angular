@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import {ClientService} from '../services/client.service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-clients',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './clients.component.html',
   standalone: true,
   styleUrl: './clients.component.css'
